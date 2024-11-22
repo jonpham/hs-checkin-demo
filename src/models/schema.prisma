@@ -1,0 +1,22 @@
+// schema.prisma
+// Provides definitions alternative to typescript types 
+// See @/app/lib/definitions.ts
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url = env("POSTGRES_LOCAL_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_LOCAL_URL_NON_POOLING") // uses a direct connection
+}
+
+model Student {
+    id String @default(cuid()) @id
+    first_name String
+    email_address String @unique
+    last_name String
+    check_in_time DateTime
+    check_in_count Int
+}

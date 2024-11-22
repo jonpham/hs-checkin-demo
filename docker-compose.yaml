@@ -1,0 +1,31 @@
+services:
+  # next-web-app:
+  #   build:
+  #     context: ..
+  #     dockerfile: ./development/web-server/Dockerfile
+  #   ports:
+  #     - "$HTTP_PORT:3000"
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     - DATABASE_URL=${DATABASE_URL}
+  #   networks:
+  #     - next-postgres
+  
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "${DATABASE_PORT}:${DATABASE_PORT}"
+    env_file:
+      - .env.test
+    volumes:
+      - postgres-store:/var/lib/postgresql/data
+    networks:
+      - next-postgres
+
+networks:
+  next-postgres:
+
+volumes:
+  postgres-store:

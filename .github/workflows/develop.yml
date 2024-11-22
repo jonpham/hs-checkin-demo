@@ -1,0 +1,68 @@
+name: Development
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+  workflow_call:
+
+jobs:
+  test:
+    name: Test application
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v4.1.0
+
+      - name: "🔧 setup pnpm"
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: true
+
+      - name: "🔍 run tests"
+        run: pnpm test --if-present
+
+  lint:
+    name: Code standards
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v4.1.0
+
+      - name: "🔧 setup pnpm"
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: true
+
+      - name: "🔍 lint code"
+        run: pnpm lint
+
+  format:
+    name: Code style
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v4.1.0
+
+      - name: "🔧 setup pnpm"
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: true
+
+      - name: "🔍 lint code"
+        run: pnpm code-check
