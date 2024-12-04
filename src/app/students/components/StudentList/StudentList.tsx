@@ -2,7 +2,10 @@ import type { Student } from '@prisma/client';
 import Link from 'next/link';
 
 function StudentList(props: { students: Student[] }) {
-  console.log(JSON.stringify(props.students));
+  const orderedStudents = props.students.sort(
+    (a, b) => a.check_in_time.getTime() - b.check_in_time.getTime()
+  );
+
   return (
     <table>
       <thead className={`text-left`}>
@@ -14,7 +17,7 @@ function StudentList(props: { students: Student[] }) {
         </tr>
       </thead>
       <tbody className={`text-left`}>
-        {props.students.map((student) => (
+        {orderedStudents.map((student) => (
           <tr key={student.id}>
             <td>
               <Link
