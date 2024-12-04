@@ -1,3 +1,9 @@
+# Demo
+
+![Demo of Working soln](./demo-2024-12-04%2012.58.02.gif)
+
+# Boilerplate
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 It has been updated to utilize & bootstrap use of the following Toolkits
